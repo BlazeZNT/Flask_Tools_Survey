@@ -52,3 +52,15 @@ surveys = {
     "satisfaction": satisfaction_survey,
     "personality": personality_quiz,
 }
+
+print(satisfaction_survey.title)
+print("------------------------")
+print(satisfaction_survey.instructions)
+print("------------------------")
+print(len(satisfaction_survey.questions))
+print("------------------------")
+for question in satisfaction_survey.questions:
+    print(question.question)
+    print(question.choices)
+    print(question.allow_text)
+    print("------------------------")

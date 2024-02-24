@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{%block title%}Home{%endblock%}
+    
+{%block content%}
+    <h1>Question {{current}}</h1>
+
+    <h2>{{question[current].question}}</h2>
+    <form action="/answer" method="[POST]">
+        <label>
+            <input type="radio" name="answer" value =  "{{question[current].choices[0]}}">
+            {{question[current].choices[0]}}
+        </label>
+        <label>
+            <input type="radio" name="answer" value =  "{{question[current].choices[1]}}">
+            {{question[current].choices[1]}}
+        </label>
+        <br>
+        <button>Submit</button>
+    </form>
+    <br>
+    <ul>
+        {%for val in responses%}
+            <li>{{val}}</li>
+        {%endfor%}
+    </ul>
+
+
+{%endblock%}

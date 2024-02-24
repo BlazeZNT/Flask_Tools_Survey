@@ -53,14 +53,16 @@ surveys = {
     "personality": personality_quiz,
 }
 
-print(satisfaction_survey.title)
-print("------------------------")
-print(satisfaction_survey.instructions)
-print("------------------------")
-print(len(satisfaction_survey.questions))
-print("------------------------")
-for question in satisfaction_survey.questions:
-    print(question.question)
-    print(question.choices)
-    print(question.allow_text)
-    print("------------------------")
+# print(satisfaction_survey.title)
+# print("------------------------")
+# print(satisfaction_survey.instructions)
+# print("------------------------")
+# print(len(satisfaction_survey.questions))
+# print("------------------------")
+# for question in satisfaction_survey.questions:
+#     print(question.question)
+#     print(question.choices)
+#     print(question.allow_text)
+#     print("------------------------")
+# new = satisfaction_survey.questions
+# print(new[0].question)

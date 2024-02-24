@@ -2,7 +2,7 @@ from flask import Flask,render_template,request,redirect,flash
 
 from flask_debugtoolbar import DebugToolbarExtension
 
-from surveys import satisfaction_survey
+from surveys import satisfaction_survey as survey
 
 app = Flask(__name__)
 
@@ -15,11 +15,21 @@ current = 0
 
 @app.route("/")
 def home_page():
-    return render_template("home.html",title = satisfaction_survey.title, instructions = satisfaction_survey.instructions)
+    return render_template("home.html",title = survey.title, instructions = survey.instructions)
 
 @app.route(f"/questions/<int:question_number>")
 def question(question_number):
-    return render_template("question.html", current = question_number , question = satisfaction_survey.questions, responses = responses)
+    if responses is None:
+        return redirect("/")
+    
+    if len(responses) == len(survey.questions):
+        return redirect("/thankyou")
+    
+    if len(responses) != question_number:
+        flash(f"Invalid Question ID : {question_number}")
+        return render_template("question.html", current = len(responses) , question = survey.questions, responses = responses)
+    
+    return render_template("question.html", current = question_number , question = survey.questions, responses = responses)
 
 @app.route("/answer")
 def answer():
@@ -27,7 +37,7 @@ def answer():
     answer = request.args["answer"]
     responses.append(answer)
     current += 1
-    if current >= len(satisfaction_survey.questions):
+    if current >= len(survey.questions):
         # Handle case when all questions are answered
         return redirect("/thankyou")
     else:

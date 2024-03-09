@@ -9,7 +9,7 @@
     <h1>Question {{current}}</h1>
 
     <h2>{{question[current].question}}</h2>
-    <form action="/answer" method="[POST]">
+    <form action="/answer" method="POST">
         <label>
             <input type="radio" name="answer" value =  "{{question[current].choices[0]}}">
             {{question[current].choices[0]}}

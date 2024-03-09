@@ -31,10 +31,10 @@ def question(question_number):
     
     return render_template("question.html", current = question_number , question = survey.questions, responses = responses)
 
-@app.route("/answer")
+@app.route("/answer",methods=["POST"])
 def answer():
     global current
-    answer = request.args["answer"]
+    answer = request.form.get("answer")
     responses.append(answer)
     current += 1
     if current >= len(survey.questions):
